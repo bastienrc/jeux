@@ -3,41 +3,21 @@ import './App.css';
 
 import Keyboard from './Keyboard';
 
-const keys = [
-  { id:  1, letter: "a", used: true },
-  { id:  2, letter: "b", used: true },
-  { id:  3, letter: "c", used: true },
-  { id:  4, letter: "d", used: true },
-  { id:  5, letter: "e", used: true },
-  { id:  6, letter: "f", used: true },
-  { id:  7, letter: "g", used: true },
-  { id:  8, letter: "h", used: true },
-  { id:  9, letter: "i", used: true },
-  { id: 10, letter: "j", used: true },
-  { id: 11, letter: "k", used: true },
-  { id: 12, letter: "l", used: false },
-  { id: 13, letter: "m", used: true },
-  { id: 14, letter: "n", used: true },
-  { id: 15, letter: "o", used: true },
-  { id: 16, letter: "p", used: false },
-  { id: 17, letter: "q", used: true },
-  { id: 18, letter: "r", used: true },
-  { id: 19, letter: "s", used: true },
-  { id: 20, letter: "t", used: false },
-  { id: 21, letter: "u", used: true },
-  { id: 22, letter: "v", used: true },
-  { id: 23, letter: "w", used: false },
-  { id: 24, letter: "x", used: true },
-  { id: 25, letter: "y", used: false },
-  { id: 26, letter: "z", used: false }
-];
+const phrases = ["pomme", "fraise", "orange", "banane", "clementine", "kiwi"];
 
 class App extends Component {
   state = {
-    keys,
-    phrase: "constitutions",
-    usedLetters: new Set("a","r","j"),
-    score: 69
+    keys: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"],
+    phrase: this.phraseRandom(phrases),
+    usedLetters: new Set(),
+    score: 0
+  }
+
+  phraseRandom(phrases) {
+    const min = Math.ceil(0);
+    const max = Math.floor(phrases.length-1);
+    const nbRandom = Math.floor(Math.random() * (max - min +1)) + min;
+    return phrases[nbRandom];
   }
 
   // Produit une représentation textuelle de l’état de la partie,
@@ -50,7 +30,6 @@ class App extends Component {
     const { usedLetters } = this.state
     usedLetters.add(letter)
     this.setState({ usedLetters })
-    //return console.log(letter)
   }
 
   render() {
@@ -63,7 +42,7 @@ class App extends Component {
           <p className="App-score">Nombre de tentative : {this.state.score}</p>
           <p className="App-wordSearch">{this.computeDisplay(this.state.phrase, this.state.usedLetters)}</p>
         </div>
-        <Keyboard keys={this.state.keys} onClick={this.handleKeyClick}/>
+        <Keyboard keys={this.state.keys} usedLetters={this.state.usedLetters} onClick={this.handleKeyClick}/>
       </div>
     );
   }
