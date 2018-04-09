@@ -8,9 +8,18 @@
   border-radius: 3px;
 }
 
-.keyboard span {
+.keyboard > .key {
   margin: 0.1rem;
   line-height: 2rem;
   border-radius: 3px;
   background-color: white;
+}
+
+.keyboard > .key:hover {
+  background-color: #DEDEDE;
+}
+
+.keyboard > .key.used {
+  background-color: grey;
+  color: darkgrey;
 }
