@@ -30,12 +30,19 @@ class App extends Component {
   }
 
   handleKeyClick = letter => {
-    // Gestion des lettres utilisées 
+    // Gestion des lettres utilisées
     const { usedLetters } = this.state
     usedLetters.add(letter)
     this.setState({ usedLetters })
+
     // Gestion du score
     this.setState({ score: this.state.score + 1 })
+
+    // Message de Victoire
+    const myPhrase = new Set(this.state.phrase)
+    if (new Set([...myPhrase].filter(x => !usedLetters.has(x))).size === 0) {
+      alert('Victoire en ' + this.state.score + ' tentatives')
+    }
   }
 
   render() {
