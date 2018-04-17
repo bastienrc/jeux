@@ -6,11 +6,14 @@ import Keyboard from './Keyboard';
 const phrases = ["pomme", "fraise", "orange", "banane", "clementine", "kiwi"];
 
 class App extends Component {
-  state = {
-    keys: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"],
-    phrase: this.phraseRandom(phrases),
-    usedLetters: new Set(),
-    score: 0
+  constructor() {
+    super()
+    this.state = {
+      keys: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"],
+      phrase: this.phraseRandom(phrases),
+      usedLetters: new Set(),
+      score: 0
+    }
   }
 
   phraseRandom(phrases) {
@@ -27,9 +30,12 @@ class App extends Component {
   }
 
   handleKeyClick = letter => {
+    // Gestion des lettres utilisées 
     const { usedLetters } = this.state
     usedLetters.add(letter)
     this.setState({ usedLetters })
+    // Gestion du score
+    this.setState({ score: this.state.score + 1 })
   }
 
   render() {
