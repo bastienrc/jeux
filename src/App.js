@@ -49,7 +49,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Le Jeux du Pendu</h1>
+          <h1 className="App-title">Le Jeu du Pendu</h1>
         </header>
         <div className="App-screen">
           <p className="App-score">Nombre de tentative : {this.state.score}</p>
