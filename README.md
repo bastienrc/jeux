@@ -5,3 +5,7 @@ Ce jeu est l'activité du cours d'openclassrooms : [Réalisez une application we
 Ce projet a été commencé par [Create React App](https://github.com/facebookincubator/create-react-app).
 
 [Demo du jeux sur Netlify.com](https://pendu-game.netlify.com)
+
+## Storybook
+
+Mis en place de [Storybook](https://github.com/storybookjs/storybook)
