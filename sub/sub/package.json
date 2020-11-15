@@ -1,0 +1,19 @@
+{
+  "name": "flashcards-api",
+  "version": "0.0.1",
+  "description": "Jeux de carte de mémoire",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "watch": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sebastien Colbert <colbertsebastien@gmail.com> (https://sebastiencolbert.fr)",
+  "license": "CECILL-2.1",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.2",
+    "mongoose": "^5.10.14"
+  }
+}

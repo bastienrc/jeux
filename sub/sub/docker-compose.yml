@@ -1,0 +1,23 @@
+version: "3.3"
+
+services:
+  # frontend:
+  #   container_name: frontend
+  #   image: nginx
+
+  # backend:
+  #   container_name: backend
+  #   image: node
+  #   command: node server.js
+
+  database:
+    container_name: database
+    image: mongo
+    command: mongod
+    ports:
+      - 27017:27017
+    volumes:
+      - data-db:/data/db
+
+volumes:
+  data-db: {}
