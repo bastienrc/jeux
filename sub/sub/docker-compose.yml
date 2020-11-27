@@ -1,23 +1,31 @@
 version: "3.3"
 
 services:
-  # frontend:
-  #   container_name: frontend
-  #   image: nginx
-
-  # backend:
-  #   container_name: backend
-  #   image: node
-  #   command: node server.js
-
-  database:
-    container_name: database
+  mongodb:
+    container_name: mongodb
     image: mongo
-    command: mongod
     ports:
       - 27017:27017
     volumes:
-      - data-db:/data/db
+      # - ./mongo-scripts:/docker-entrypoint-initdb.d/
+      - data-mongodb:/data/db
+    #restart: always
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: root
+    #   MONGO_INITDB_ROOT_PASSWORD: root
+    command: mongod
+
+  # node:
+  #   depends_on:
+  #     - mongodb
+  #   container_name: node
+  #   image: node
+  #   ports:
+  #     - "5000:5000"
+  #   restart: always
+  #   environment:
+  #     NODE_ENV: dev
+  #   command: node server.js
 
 volumes:
-  data-db: {}
+  data-mongodb: {}
