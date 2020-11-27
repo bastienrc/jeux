@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Flashcards
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -68,3 +68,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+## Documentations
+
+- [React JS CRUD Example Tutorial by Ramesh Fadatare](https://www.javaguides.net/2020/07/react-js-crud-application-example.html)
