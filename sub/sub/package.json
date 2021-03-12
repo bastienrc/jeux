@@ -1,6 +1,6 @@
 {
   "name": "flashcards-api",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Jeux de carte de mémoire",
   "main": "server.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongodb": "^3.6.2",
-    "mongoose": "^5.10.14"
+    "mongodb": "^3.6.4",
+    "mongoose": "^5.12.0"
   }
 }
