@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
+// import styled from 'styled-components'
 import './App.css'
+import Keyboard from './components/Keyboard'
 
-import Keyboard from './Keyboard'
-
-const phrases = ['pomme', 'fraise', 'orange', 'banane', 'clementine', 'kiwi']
+import data from './data.json'
+// const words = data.fruits
+const words = ['pomme', 'fraise', 'orange', 'banane', 'clementine', 'kiwi']
+console.log(data[10].name)
 
 class App extends Component {
-  constructor() {
+  constructor () {
     super()
     this.state = {
       keys: [
@@ -14,29 +17,29 @@ class App extends Component {
         'q', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm',
         'w', 'x', 'c', 'v', 'b', 'n'
       ],
-      phrase: this.phraseRandom(phrases),
+      word: this.wordRandom(words),
       usedLetters: new Set(),
-      score: 0,
+      score: 0
     }
   }
 
-  phraseRandom(phrases) {
+  wordRandom (words) {
     const min = Math.ceil(0)
-    const max = Math.floor(phrases.length - 1)
+    const max = Math.floor(words.length - 1)
     const nbRandom = Math.floor(Math.random() * (max - min + 1)) + min
-    return phrases[nbRandom]
+    return words[nbRandom]
   }
 
   // Produit une représentation textuelle de l’état de la partie,
   // chaque lettre non découverte étant représentée par un _underscore_.
-  computeDisplay(phrase, usedLetters) {
-    return phrase.replace(
+  computeDisplay (word, usedLetters) {
+    return word.replace(
       /\w/g,
       letter => (usedLetters.has(letter) ? letter : '_')
     )
   }
 
-  handleKeyClick = letter => {
+  handleKeyClick (letter) {
     // Gestion des lettres utilisées
     const { usedLetters } = this.state
     usedLetters.add(letter)
@@ -46,24 +49,24 @@ class App extends Component {
     this.setState({ score: this.state.score + 1 })
 
     // Message de Victoire
-    const myPhrase = new Set(this.state.phrase)
-    if (new Set([...myPhrase].filter(x => !usedLetters.has(x))).size === 0) {
+    const myWord = new Set(this.state.word)
+    if (new Set([...myWord].filter(x => !usedLetters.has(x))).size === 0) {
       alert('Victoire en ' + this.state.score + ' tentatives')
     }
   }
 
-  render() {
+  render () {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Le Jeu du Pendu</h1>
+      <div className='App'>
+        <header className='App-header'>
+          <h1 className='App-title'>Le Jeu du Pendu</h1>
         </header>
-        <div className="App-screen">
-          <p className="App-score">
+        <div className='App-screen'>
+          <p className='App-score'>
             Nombre de tentative(s) : {this.state.score}
           </p>
-          <p className="App-wordSearch">
-            {this.computeDisplay(this.state.phrase, this.state.usedLetters)}
+          <p className='App-wordSearch'>
+            {this.computeDisplay(this.state.word, this.state.usedLetters)}
           </p>
         </div>
         <Keyboard
