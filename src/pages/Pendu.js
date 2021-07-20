@@ -63,10 +63,20 @@ const Score = styled.div`
   padding-top: 15px;
   border-radius: 0% 0% 0% 100%;
 `
+
+const Reset = styled.div`
+  position: absolute;
+  top : 0;
+  left: 0;
+  width: 70px;
+  height: 70px;
+  font-size: 1.5rem;
+`
+
 const Pendu = () => {
   const [score, setScore] = useState(0)
   const [usedLetters, setUsedLetters] = useState([])
-  const [animation, setAnimation] = useState('Salut')
+  const [animation, setAnimation] = useState('Start')
 
   const wordRandom = (words) => {
     const min = Math.ceil(0)
@@ -76,7 +86,7 @@ const Pendu = () => {
   }
 
   const words = ['pomme', 'fraise', 'orange', 'banane', 'clementine', 'kiwi']
-  const [word] = useState(wordRandom(words))
+  const [word, setWord] = useState(wordRandom(words))
 
   const Keys = [
     'a', 'z', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p',
@@ -104,10 +114,18 @@ const Pendu = () => {
     }
   }
 
+  const handleReset = function () {
+    setWord(wordRandom(words))
+    setScore(0)
+    setUsedLetters([])
+    setAnimation('Start')
+  }
+
   return (
     <Layout pageTitle='Le Jeu du Pendu'>
       <Container>
         <Animation>
+          <Reset onClick={() => handleReset()}>🔄</Reset>
           {animation}
           <Score>{score}</Score>
         </Animation>
