@@ -35,18 +35,20 @@ const Key = styled.span`
   &&:hover {
     background-color: #DEDEDE;
   }
-`
-
-const Used = styled.span`
-  background-color: grey;
-  color: darkgrey;
+  &.${props => props.isActive} {
+    background-color: grey;
+    color: darkgrey;
+  }
 `
 
 const Animation = styled.div`
   position: relative;
-  background-color: blue;
+  background-color: greenyellow;
+  color: orange;
+  font-size: 3rem;
   width: 100%;
   height: 300px;
+  padding-top: 15%;
 `
 
 const Score = styled.div`
@@ -55,23 +57,16 @@ const Score = styled.div`
   right: 0;
   width: 70px;
   height: 70px;
+  font-size: 1.5rem;
+  color: white;
   background-color: cyan;
   padding-top: 15px;
   border-radius: 0% 0% 0% 100%;
 `
-
 const Pendu = () => {
-  const [score, setScore] = useState(5)
-  const [word, setWord] = useState('polochon')
+  const [score, setScore] = useState(0)
   const [usedLetters, setUsedLetters] = useState([])
-
-  const Keys = [
-    'a', 'z', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p',
-    'q', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm',
-    'w', 'x', 'c', 'v', 'b', 'n'
-  ]
-
-  const words = ['pomme', 'fraise', 'orange', 'banane', 'clementine', 'kiwi']
+  const [animation, setAnimation] = useState('Salut')
 
   const wordRandom = (words) => {
     const min = Math.ceil(0)
@@ -80,6 +75,15 @@ const Pendu = () => {
     return words[nbRandom]
   }
 
+  const words = ['pomme', 'fraise', 'orange', 'banane', 'clementine', 'kiwi']
+  const [word] = useState(wordRandom(words))
+
+  const Keys = [
+    'a', 'z', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p',
+    'q', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm',
+    'w', 'x', 'c', 'v', 'b', 'n'
+  ]
+
   const computeDisplay = (word, usedLetters) => {
     return word.replace(
       /\w/g,
@@ -87,10 +91,24 @@ const Pendu = () => {
     )
   }
 
+  const handleKeyClick = function (letter) {
+    // Gestion des lettres utilisées
+    setUsedLetters([...usedLetters, letter])
+
+    // Gestion du score
+    setScore(score + 1)
+
+    // Message de Victoire
+    if (new Set([...word].filter(x => !usedLetters.includes(x))).size === 1) {
+      setAnimation(`Victoire en ${score + 1} tentatives`)
+    }
+  }
+
   return (
     <Layout pageTitle='Le Jeu du Pendu'>
       <Container>
         <Animation>
+          {animation}
           <Score>{score}</Score>
         </Animation>
         <WordSearch>
@@ -101,7 +119,8 @@ const Pendu = () => {
             Keys.map(letter => (
               <Key
                 key={letter}
-                onClick={e => setUsedLetters([...usedLetters, letter])}
+                onClick={() => handleKeyClick(letter)}
+                $isActive
               >
                 {letter}
               </Key>
@@ -114,37 +133,3 @@ const Pendu = () => {
 }
 
 export default Pendu
-
-// class App extends Component {
-//   constructor () {
-//     super()
-//     this.state = {
-//       keys: [
-//         'a', 'z', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p',
-//         'q', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm',
-//         'w', 'x', 'c', 'v', 'b', 'n'
-//       ],
-//       word: this.wordRandom(words),
-//       usedLetters: new Set(),
-//       score: 0
-//     }
-//   }
-
-//   // Produit une représentation textuelle de l’état de la partie,
-//   // chaque lettre non découverte étant représentée par un _underscore_.
-
-//   handleKeyClick (letter) {
-//     // Gestion des lettres utilisées
-//     const { usedLetters } = this.state
-//     usedLetters.add(letter)
-//     this.setState({ usedLetters })
-
-//     // Gestion du score
-//     this.setState({ score: this.state.score + 1 })
-
-//     // Message de Victoire
-//     const myWord = new Set(this.state.word)
-//     if (new Set([...myWord].filter(x => !usedLetters.has(x))).size === 0) {
-//       alert('Victoire en ' + this.state.score + ' tentatives')
-//     }
-//   }
