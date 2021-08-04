@@ -1,0 +1,23 @@
+### Create
+POST http://localhost:5000/api/halloffame HTTP/1.1
+Content-Type: application/json
+
+{"scores": 1000, "player":"Spock"}
+
+### Update
+PUT http://localhost:5000/api/halloffame/:id HTTP/1.1
+Content-Type: application/json
+
+{"user":"James"}
+
+### Delete
+DELETE http://localhost:5000/api/halloffame/5fb16617149c7d7c7f059fc2 HTTP/1.1
+
+### Read one
+GET http://localhost:5000/api/halloffame/5fb16617149c7d7c7f059fc2 HTTP/1.1
+
+### Read all halloffame
+GET http://localhost:5000/api/halloffame HTTP/1.1
+
+### Count Authors
+GET http://localhost:5000/api/halloffame-count HTTP/1.1
