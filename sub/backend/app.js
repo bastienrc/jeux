@@ -1,6 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const apiScore = require('./Score/apiScore')
+const apiHallOfFame = require('./HallOfFame/apiHallOfFame')
 
 const app = express()
 
@@ -21,6 +21,6 @@ app.use((req, res, next) => {
 
 app.use(express.json())
 
-apiScore(app)
+apiHallOfFame(app)
 
 module.exports = app
