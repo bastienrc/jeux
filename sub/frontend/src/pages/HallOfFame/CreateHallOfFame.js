@@ -1,57 +1,55 @@
 import React, { Component } from 'react'
-import ScoreService from '../scores/score';
+import Layout from '../../components/Layout'
+import HallOfFameService from './ApiHallOfFame'
 
-class CreateScoreComponent extends Component {
+class CreateHallOfFameComponent extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      // step 2
       id: this.props.match.params.id,
       user: '',
       points: ''
     }
-    this.changeUserHandler = this.changeUserHandler.bind(this);
-    this.changePointsHandler = this.changePointsHandler.bind(this);
-    this.saveOrUpdateScore = this.saveOrUpdateScore.bind(this);
+    this.changeUserHandler = this.changeUserHandler.bind(this)
+    this.changePointsHandler = this.changePointsHandler.bind(this)
+    this.saveOrUpdateHallOfFame = this.saveOrUpdateHallOfFame.bind(this)
   }
 
-  // step 3
-  componentDidMount(){
-    // step 4
+  componentDidMount() {
     if (this.state.id === '_add') {
       return
     }
     else
     {
-      ScoreService.getScoreById(this.state.id).then( (res) =>{
-        let score = res.data;
+      HallOfFameService.getHallOfFameById(this.state.id).then( (res) =>{
+        let halloffame = res.data;
         this.setState({
-          user: score.user,
-          points: score.points
+          user: halloffame.user,
+          points: halloffame.points
         });
     });
     }
   }
 
-  saveOrUpdateScore = (e) => {
+  saveOrUpdateHallOfFame = (e) => {
     e.preventDefault();
 
-    let score = {
+    let halloffame = {
       user: this.state.user,
       points: this.state.points
     };
 
-    console.log('score => ' + JSON.stringify(score));
+    console.log('halloffame => ' + JSON.stringify(halloffame));
 
     // step 5
     if(this.state.id === '_add'){
-      ScoreService.createScore(score).then(res =>{
-        this.props.history.push('/scores');
+      HallOfFameService.createHallOfFame(halloffame).then(res =>{
+        this.props.history.push('/halloffames');
       });
     }else{
-      ScoreService.updateScore(score, this.state.id).then( res => {
-        this.props.history.push('/scores');
+      HallOfFameService.updateHallOfFame(halloffame, this.state.id).then( res => {
+        this.props.history.push('/halloffames');
       });
     }
   }
@@ -65,20 +63,20 @@ class CreateScoreComponent extends Component {
   }
 
   cancel(){
-    this.props.history.push('/scores');
+    this.props.history.push('/halloffames');
   }
 
   getTitle(){
     if(this.state.id === '_add'){
-      return <h3 className="text-center">Add Score</h3>
+      return <h3 className="text-center">Add HallOfFame</h3>
     }else{
-      return <h3 className="text-center">Update Score</h3>
+      return <h3 className="text-center">Update HallOfFame</h3>
     }
   }
 
   render() {
     return (
-      <div>
+      <Layout>
         <br></br>
         <div className = "container">
           <div className = "row">
@@ -107,17 +105,17 @@ class CreateScoreComponent extends Component {
                       onChange={this.changePointsHandler}
                     />
                   </div>
-                  <button className="btn btn-success" onClick={this.saveOrUpdateScore}>Save</button>
+                  <button className="btn btn-success" onClick={this.saveOrUpdateHallOfFame}>Save</button>
                   <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
                 </form>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </Layout>
     )
   }
 }
 
-export default CreateScoreComponent
+export default CreateHallOfFameComponent
 

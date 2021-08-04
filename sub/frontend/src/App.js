@@ -1,30 +1,33 @@
-import React from 'react'
-import './App.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import ListScoreComponent from './components/ListScoreComponent'
-import HeaderComponent from './components/HeaderComponent'
-import FooterComponent from './components/FooterComponent'
-import CreateScoreComponent from './components/CreateScoreComponent'
-import ViewScoreComponent from './components/ViewScoreComponent'
+
+// Global
+import Home from './pages/Home'
+import About from './pages/About'
+import Page404 from './pages/Page404'
+import SignUp from './pages/SignUp'
+
+// HallOfFame
+import ListHallOfFame from './pages/HallOfFame/ListHallOfFame'
+import CreateHallOfFame from './pages/HallOfFame/CreateHallOfFame'
+import ViewHallOfFame from './pages/HallOfFame/ViewHallOfFame'
 
 function App () {
   return (
-    <div>
+    <div id='layout'>
       <Router>
-        <HeaderComponent />
-        <div className='container'>
-          <Switch>
-            <Route path='/' exact component={ListScoreComponent} />
-            <Route path='/scores' component={ListScoreComponent} />
-            <Route path='/add-score/:id' component={CreateScoreComponent} />
-            <Route path='/view-score/:id' component={ViewScoreComponent} />
-            {/* <Route path = "/update-score/:id" component = {UpdateScoreComponent}></Route> */}
-          </Switch>
-        </div>
-        <FooterComponent />
+        <Switch>
+          <Route path='/' exact component={Home} />
+          <Route path='/a-propos' exact component={About} />
+          <Route path='/sign-up' exact component={SignUp} />
+
+          <Route path='/halloffame' component={ListHallOfFame} />
+          <Route path='/add-halloffame/:id' component={CreateHallOfFame} />
+          <Route path='/view-halloffame/:id' component={ViewHallOfFame} />
+
+          <Route component={Page404} />
+        </Switch>
       </Router>
     </div>
-
   )
 }
 
