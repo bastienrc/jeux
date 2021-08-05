@@ -26,12 +26,12 @@ class ViewHallOfFameComponent extends Component {
           <h3 className='text-center'> View HallOfFame Details</h3>
           <div className='card-body'>
             <div className='row'>
-              <label>HallOfFame User:&nbsp;</label>
-              <div>{this.state.halloffame.user}</div>
+              <label>HallOfFame Player:&nbsp;</label>
+              <div>{this.state.halloffame.player}</div>
             </div>
             <div className='row'>
-              <label>HallOfFame Points:&nbsp;</label>
-              <div>{this.state.halloffame.points}</div>
+              <label>HallOfFame Scores:&nbsp;</label>
+              <div>{this.state.halloffame.scores}</div>
             </div>
           </div>
 

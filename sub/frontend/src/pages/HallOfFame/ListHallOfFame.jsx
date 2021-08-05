@@ -50,18 +50,18 @@ class ListHallOfFame extends Component {
         <Table>
           <thead>
             <tr>
-              <th>User</th>
-              <th>Points</th>
+              <th>Player</th>
+              <th>Score</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {
-            this.state.halloffames.map(
+            this.state.halloffames.sort((a, b) => b.scores - a.scores).map(
               halloffame =>
                 <tr key={halloffame._id}>
-                  <td>{halloffame.user}</td>
-                  <td>{halloffame.points}</td>
+                  <td>{halloffame.player}</td>
+                  <td>{halloffame.scores}</td>
                   <td>
                     <button onClick={() => this.editHallOfFame(halloffame._id)} className='btn btn-info'>Update</button>
                     <button style={{ marginLeft: '10px' }} onClick={() => this.deleteHallOfFame(halloffame._id)} className='btn btn-danger'>Delete</button>

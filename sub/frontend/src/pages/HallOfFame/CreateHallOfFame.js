@@ -8,11 +8,11 @@ class CreateHallOfFameComponent extends Component {
 
     this.state = {
       id: this.props.match.params.id,
-      user: '',
-      points: ''
+      player: '',
+      scores: ''
     }
-    this.changeUserHandler = this.changeUserHandler.bind(this)
-    this.changePointsHandler = this.changePointsHandler.bind(this)
+    this.changePlayerHandler = this.changePlayerHandler.bind(this)
+    this.changeScoresHandler = this.changeScoresHandler.bind(this)
     this.saveOrUpdateHallOfFame = this.saveOrUpdateHallOfFame.bind(this)
   }
 
@@ -25,8 +25,8 @@ class CreateHallOfFameComponent extends Component {
       HallOfFameService.getHallOfFameById(this.state.id).then( (res) =>{
         let halloffame = res.data;
         this.setState({
-          user: halloffame.user,
-          points: halloffame.points
+          player: halloffame.player,
+          scores: halloffame.scores
         });
     });
     }
@@ -36,8 +36,8 @@ class CreateHallOfFameComponent extends Component {
     e.preventDefault();
 
     let halloffame = {
-      user: this.state.user,
-      points: this.state.points
+      player: this.state.player,
+      scores: this.state.scores
     };
 
     console.log('halloffame => ' + JSON.stringify(halloffame));
@@ -45,25 +45,25 @@ class CreateHallOfFameComponent extends Component {
     // step 5
     if(this.state.id === '_add'){
       HallOfFameService.createHallOfFame(halloffame).then(res =>{
-        this.props.history.push('/halloffames');
+        this.props.history.push('/halloffame');
       });
     }else{
       HallOfFameService.updateHallOfFame(halloffame, this.state.id).then( res => {
-        this.props.history.push('/halloffames');
+        this.props.history.push('/halloffame');
       });
     }
   }
 
-  changeUserHandler= (event) => {
-    this.setState({user: event.target.value});
+  changePlayerHandler= (event) => {
+    this.setState({player: event.target.value});
   }
 
-  changePointsHandler= (event) => {
-    this.setState({points: event.target.value});
+  changeScoresHandler= (event) => {
+    this.setState({scores: event.target.value});
   }
 
   cancel(){
-    this.props.history.push('/halloffames');
+    this.props.history.push('/halloffame');
   }
 
   getTitle(){
@@ -87,22 +87,22 @@ class CreateHallOfFameComponent extends Component {
               <div className = "card-body">
                 <form>
                   <div className = "form-group">
-                    <label>User: </label>
+                    <label>Player: </label>
                     <input
-                      placeholder="User"
-                      name="user"
+                      placeholder="Player"
+                      name="player"
                       className="form-control"
-                      value={this.state.user}
-                      onChange={this.changeUserHandler}
+                      value={this.state.player}
+                      onChange={this.changePlayerHandler}
                     />
                   </div>
                   <div className="form-group">
-                    <label>Points: </label>
+                    <label>Scores: </label>
                     <input
-                      placeholder="Points"
-                      name="points" className="form-control"
-                      value={this.state.points}
-                      onChange={this.changePointsHandler}
+                      placeholder="Scores"
+                      name="scores" className="form-control"
+                      value={this.state.scores}
+                      onChange={this.changeScoresHandler}
                     />
                   </div>
                   <button className="btn btn-success" onClick={this.saveOrUpdateHallOfFame}>Save</button>
