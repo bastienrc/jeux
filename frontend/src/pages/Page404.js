@@ -1,10 +1,8 @@
-import React from 'react'
+import Layout from '../components/Layout'
 
 const Page404 = () => {
   return (
-    <div>
-      <h1>Erreur 404</h1>
-    </div>
+    <Layout pageTitle='Page 404' />
   )
 }
 

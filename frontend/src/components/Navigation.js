@@ -9,9 +9,11 @@ const Nav = styled.nav`
   width: 100%;
 `
 
-const Brand = styled.div`
+const Brand = styled(Link)`
   font-size: 3rem;
   margin: 10px;
+  color: white;
+  text-decoration: none;
 `
 
 const NavLinks = styled.ul`
@@ -41,14 +43,19 @@ const NavLinkText = styled(Link)`
   }
 `
 
-const Navigation = () => {
+const Navigation = ({ brand }) => {
   return (
     <Nav>
-      <Brand>Jeux</Brand>
+      <Brand to='/' exact>{brand}</Brand>
       <NavLinks>
         <NavLinkItem>
           <NavLinkText to='/' exact activeClassName='navActive'>
             Home
+          </NavLinkText>
+        </NavLinkItem>
+        <NavLinkItem>
+          <NavLinkText to='/halloffame' exact activeClassName='navActive'>
+            Hall Of Fame
           </NavLinkText>
         </NavLinkItem>
         <NavLinkItem>

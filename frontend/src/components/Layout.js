@@ -9,33 +9,55 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     background-color: #BADA55;
-    font-family: Consolas, 'Courier New', monospace;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
   }
 `
 
-const Container = styled.main`
-  margin: auto;
-  width: 80%;
-  max-width: 800px;
-  font-family: sans-serif
+const Container = styled.div`
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
 `
 
-const Heading = styled.h1`
-  color: green;
+const Main = styled.main`
+  margin: auto;
+  width: 80%;
+  height: 100%;
+  h1 {
+    color: green;
+    text-align: center;
+    margin: 1.5rem 0 2rem 0;
+  }
+`
+
+const Footer = styled.footer`
+  background-color: #111;
+  width: 100%;
+  color: white;
   text-align: center;
-  margin: 1.5rem 0 2rem 0;
+  font-size: 1em;
+  padding: 1em 0;
 `
 
 const Layout = ({ pageTitle, children }) => {
   return (
     <>
       <GlobalStyle />
-      <title>Mes Jeux</title>
-      <Navigation />
       <Container>
-        <Heading>{pageTitle}</Heading>
-        {children}
+        <title>Mes Jeux</title>
+        <Navigation brand='Mes Jeux' />
+        <Main>
+          <h1>{pageTitle}</h1>
+          {children}
+        </Main>
+        <Footer>Mes Jeux ~ 2021 ~ Sebastien Colbert</Footer>
       </Container>
     </>
   )

@@ -1,10 +1,17 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
+// Global
 import Home from './pages/Home'
 import Pendu from './pages/Pendu'
 import Snake from './pages/Snake'
 import About from './pages/About'
 import SignUp from './pages/SignUp'
 import Page404 from './pages/Page404'
+
+// HallOfFame
+import ListHallOfFame from './pages/HallOfFame/ListHallOfFame'
+import CreateHallOfFame from './pages/HallOfFame/CreateHallOfFame'
+import ViewHallOfFame from './pages/HallOfFame/ViewHallOfFame'
 
 function App () {
   return (
@@ -15,6 +22,11 @@ function App () {
         <Route path='/snake' exact component={Snake} />
         <Route path='/a-propos' exact component={About} />
         <Route path='/sign-up' exact component={SignUp} />
+
+        <Route path='/halloffame' component={ListHallOfFame} />
+        <Route path='/add-halloffame/:id' component={CreateHallOfFame} />
+        <Route path='/view-halloffame/:id' component={ViewHallOfFame} />
+
         <Route component={Page404} />
       </Switch>
     </Router>
