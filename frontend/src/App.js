@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Pendu from './pages/Pendu'
 import Snake from './pages/Snake'
+import Flashcard from './pages/Flashcard'
 import About from './pages/About'
 import SignUp from './pages/SignUp'
 import Page404 from './pages/Page404'
@@ -20,6 +21,7 @@ function App () {
         <Route path='/' exact component={Home} />
         <Route path='/pendu' exact component={Pendu} />
         <Route path='/snake' exact component={Snake} />
+        <Route path='/flashcard' exact component={Flashcard} />
         <Route path='/a-propos' exact component={About} />
         <Route path='/sign-up' exact component={SignUp} />
 

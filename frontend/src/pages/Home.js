@@ -26,6 +26,7 @@ const Home = () => {
     <Layout pageTitle='Mes Jeux'>
       <Cards>
         <CardLink to='/pendu'>Pendu</CardLink>
+        <CardLink to='/flashcard'>Flashcard</CardLink>
         <CardLink to='/snake'>Snake</CardLink>
       </Cards>
     </Layout>
