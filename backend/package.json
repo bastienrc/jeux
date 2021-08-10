@@ -1,7 +1,7 @@
 {
-  "name": "flashcards-backend",
-  "version": "0.0.2",
-  "description": "Jeux de carte de mémoire",
+  "name": "jeux-backend",
+  "version": "0.1.0",
+  "description": "Mon api pour mon app Jeux",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
