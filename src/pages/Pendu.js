@@ -106,7 +106,7 @@ const Pendu = () => {
     setUsedLetters([...usedLetters, letter])
 
     // Gestion du score
-    setScore(score + 1)
+    setScore(score => score + 1)
 
     // Message de Victoire
     if (new Set([...word].filter(x => !usedLetters.includes(x))).size === 1) {
