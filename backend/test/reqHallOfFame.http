@@ -2,7 +2,7 @@
 GET http://localhost:5000/api/halloffame HTTP/1.1
 
 ### Read one
-GET http://localhost:5000/api/halloffame/611f6af9184c4f209bda50a2 HTTP/1.1
+GET http://localhost:5000/api/halloffame/612726dc8112de85658c72d7 HTTP/1.1
 
 ### Create
 POST http://localhost:5000/api/halloffame HTTP/1.1
@@ -11,13 +11,13 @@ Content-Type: application/json
 {"score": 1000, "player":"Spock"}
 
 ### Update
-PUT http://localhost:5000/api/halloffame/611f6af9184c4f209bda50a2 HTTP/1.1
+PUT http://localhost:5000/api/halloffame/612726dc8112de85658c72d7 HTTP/1.1
 Content-Type: application/json
 
 {"player":"James T. Kirk"}
 
 ### Delete
-DELETE http://localhost:5000/api/halloffame/611f6af9184c4f209bda50a2 HTTP/1.1
+DELETE http://localhost:5000/api/halloffame/612726dc8112de85658c72d7 HTTP/1.1
 
 ### Count Authors
 GET http://localhost:5000/api/halloffame/count HTTP/1.1
