@@ -68,6 +68,11 @@ const Navigation = ({ brand }) => {
             Sign Up
           </NavLinkText>
         </NavLinkItem>
+        <NavLinkItem>
+          <NavLinkText to='/login' activeClassName='navActive'>
+            Login
+          </NavLinkText>
+        </NavLinkItem>
       </NavLinks>
     </Nav>
   )

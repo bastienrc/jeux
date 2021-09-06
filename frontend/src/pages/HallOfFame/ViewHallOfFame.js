@@ -21,20 +21,10 @@ class ViewHallOfFameComponent extends Component {
   render () {
     return (
       <Layout>
-        <br />
-        <div className='card col-md-6 offset-md-3'>
-          <h3 className='text-center'> View HallOfFame Details</h3>
-          <div className='card-body'>
-            <div className='row'>
-              <label>HallOfFame Player:&nbsp;</label>
-              <div>{this.state.halloffame.player}</div>
-            </div>
-            <div className='row'>
-              <label>HallOfFame Scores:&nbsp;</label>
-              <div>{this.state.halloffame.scores}</div>
-            </div>
-          </div>
-
+        <h3 className='text-center'>HallOfFame Details</h3>
+        <div className='card-body'>
+          <p>Player: {this.state.halloffame.player}</p>
+          <p>Scores: {this.state.halloffame.score}</p>
         </div>
       </Layout>
     )

@@ -61,7 +61,7 @@ class ListHallOfFame extends Component {
               halloffame =>
                 <tr key={halloffame._id}>
                   <td>{halloffame.player}</td>
-                  <td>{halloffame.scores}</td>
+                  <td>{halloffame.score}</td>
                   <td>
                     <button onClick={() => this.editHallOfFame(halloffame._id)} className='btn btn-info'>Update</button>
                     <button style={{ marginLeft: '10px' }} onClick={() => this.deleteHallOfFame(halloffame._id)} className='btn btn-danger'>Delete</button>

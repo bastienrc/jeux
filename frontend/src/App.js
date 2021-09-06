@@ -7,6 +7,7 @@ import Snake from './pages/Snake'
 import Flashcard from './pages/Flashcard'
 import About from './pages/About'
 import SignUp from './pages/SignUp'
+import Login from './pages/Login'
 import Page404 from './pages/Page404'
 
 // HallOfFame
@@ -23,6 +24,7 @@ function App () {
         <Route path='/snake' exact component={Snake} />
         <Route path='/flashcard' exact component={Flashcard} />
         <Route path='/a-propos' exact component={About} />
+        <Route path='/login' exact component={Login} />
         <Route path='/sign-up' exact component={SignUp} />
 
         <Route path='/halloffame' component={ListHallOfFame} />

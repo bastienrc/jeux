@@ -9,10 +9,10 @@ class CreateHallOfFameComponent extends Component {
     this.state = {
       id: this.props.match.params.id,
       player: '',
-      scores: ''
+      score: ''
     }
     this.changePlayerHandler = this.changePlayerHandler.bind(this)
-    this.changeScoresHandler = this.changeScoresHandler.bind(this)
+    this.changeScoreHandler = this.changeScoreHandler.bind(this)
     this.saveOrUpdateHallOfFame = this.saveOrUpdateHallOfFame.bind(this)
   }
 
@@ -26,7 +26,7 @@ class CreateHallOfFameComponent extends Component {
         let halloffame = res.data;
         this.setState({
           player: halloffame.player,
-          scores: halloffame.scores
+          score: halloffame.score
         });
     });
     }
@@ -37,7 +37,7 @@ class CreateHallOfFameComponent extends Component {
 
     let halloffame = {
       player: this.state.player,
-      scores: this.state.scores
+      score: this.state.score
     };
 
     console.log('halloffame => ' + JSON.stringify(halloffame));
@@ -58,8 +58,8 @@ class CreateHallOfFameComponent extends Component {
     this.setState({player: event.target.value});
   }
 
-  changeScoresHandler= (event) => {
-    this.setState({scores: event.target.value});
+  changeScoreHandler= (event) => {
+    this.setState({score: event.target.value});
   }
 
   cancel(){
@@ -77,40 +77,30 @@ class CreateHallOfFameComponent extends Component {
   render() {
     return (
       <Layout>
-        <br></br>
-        <div className = "container">
-          <div className = "row">
-            <div className = "card col-md-6 offset-md-3 offset-md-3">
-              {
-                this.getTitle()
-              }
-              <div className = "card-body">
-                <form>
-                  <div className = "form-group">
-                    <label>Player: </label>
-                    <input
-                      placeholder="Player"
-                      name="player"
-                      className="form-control"
-                      value={this.state.player}
-                      onChange={this.changePlayerHandler}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Scores: </label>
-                    <input
-                      placeholder="Scores"
-                      name="scores" className="form-control"
-                      value={this.state.scores}
-                      onChange={this.changeScoresHandler}
-                    />
-                  </div>
-                  <button className="btn btn-success" onClick={this.saveOrUpdateHallOfFame}>Save</button>
-                  <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
-                </form>
-              </div>
+        { this.getTitle() }
+        <div className = "card-body">
+          <form>
+            <div className = "form-group">
+              <label>Player: </label>
+              <input
+                placeholder="Player"
+                name="player"
+                value={this.state.player}
+                onChange={this.changePlayerHandler}
+              />
             </div>
-          </div>
+            <div className="form-group">
+              <label>Score: </label>
+              <input
+                placeholder="Score"
+                name="score"
+                value={this.state.score}
+                onChange={this.changeScoreHandler}
+              />
+            </div>
+            <button onClick={this.saveOrUpdateHallOfFame}>Enregistrer</button>
+            <button onClick={this.cancel.bind(this)}>Annuler</button>
+          </form>
         </div>
       </Layout>
     )
