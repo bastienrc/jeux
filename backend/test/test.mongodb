@@ -7,5 +7,5 @@
 use('jeux');
 
 // Run a find command to view items sold on April 4th, 2014.
-db.scores.findOne({ _id: "610b04ee5e102a4229c4c61d" });
-
+//db.scores.findOne({ _id: "610b04ee5e102a4229c4c61d" });
+db.scores.countDocuments()

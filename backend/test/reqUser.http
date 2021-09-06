@@ -3,8 +3,8 @@ POST http://localhost:5000/api/user/signup HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "colbertsebastien@gmail.com",
-  "password": "ueieuieeieui"
+  "email": "test@test.fr",
+  "password": "test"
 }
 
 ### login
@@ -12,6 +12,6 @@ POST http://localhost:5000/api/user/login HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "colbertsebastien@gmail.com",
-  "password": "ueieuieeieui"
+  "email": "test@test.fr",
+  "password": "test"
 }
