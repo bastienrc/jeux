@@ -1,25 +1,36 @@
 import Layout from '../../components/Layout'
 
-const SignUp = () => {
+const Register = (props) => {
   return (
     <Layout pageTitle='Inscription'>
-      <form id='SignUpForm'>
-        <div className='form-group'>
-          <label for='email'>Adresse mail</label>
-          <input type='email' id='email' />
-        </div>
-        <div className='form-group'>
-          <label for='password'>Mot de passe</label>
-          <input type='password' id='password' />
-        </div>
-        <div className='form-group'>
-          <label for='avatar'>Avatar</label>
-          <input type='text' id='avatar' />
-        </div>
-        <button className='btn btn-success'>Inscription</button>
+      <form className='form-profile'>
+        <fieldset>
+          <legend>S'enregistrer</legend>
+          <div className='form-group'>
+            <label htmlFor='email'>Email</label>
+            <input
+              type='text'
+              className='form-control'
+              id='email'
+              placeholder='mail@mail.fr'
+            />
+          </div>
+          <div className='form-group'>
+            <label htmlFor='password'>Password</label>
+            <input
+              type='password'
+              className='form-control'
+              id='password'
+              placeholder='Password'
+            />
+          </div>
+          <button type='submit' className='btn btn-outline-primary'>
+            Save
+          </button>
+        </fieldset>
       </form>
     </Layout>
   )
 }
 
-export default SignUp
+export default Register

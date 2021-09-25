@@ -1,5 +1,8 @@
-import { NavLink as Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import Auth from '../contexts/Auth'
+import { logout } from '../services/AuthApi'
 
 const Nav = styled.nav`
   display: flex;
@@ -44,6 +47,13 @@ const NavLinkText = styled(Link)`
 `
 
 const Navigation = ({ brand }) => {
+  const { isAuthenticated, setIsAuthenticated } = useContext(Auth)
+
+  const handleLogout = () => {
+    logout()
+    setIsAuthenticated(false)
+  }
+
   return (
     <Nav>
       <Brand to='/' exact>{brand}</Brand>
@@ -63,16 +73,31 @@ const Navigation = ({ brand }) => {
             À Propos
           </NavLinkText>
         </NavLinkItem>
-        <NavLinkItem>
-          <NavLinkText to='/sign-up' activeClassName='navActive'>
-            Sign Up
-          </NavLinkText>
-        </NavLinkItem>
-        <NavLinkItem>
-          <NavLinkText to='/login' activeClassName='navActive'>
-            Login
-          </NavLinkText>
-        </NavLinkItem>
+        {(!isAuthenticated && (
+          <>
+            <NavLinkItem>
+              <NavLinkText to='/login' activeClassName='navActive'>
+                Se connecter
+              </NavLinkText>
+            </NavLinkItem>
+            <NavLinkItem>
+              <NavLinkText to='/sign-up' activeClassName='navActive'>
+                S'enregistrer
+              </NavLinkText>
+            </NavLinkItem>
+          </>
+        )) || (
+          <>
+            <NavLinkItem>
+              <NavLinkText to='/account' activeClassName='navActive'>
+                Mon compte
+              </NavLinkText>
+            </NavLinkItem>
+            <NavLinkItem>
+              <button onClick={handleLogout}>Déconnexion</button>
+            </NavLinkItem>
+          </>
+        )}
       </NavLinks>
     </Nav>
   )
