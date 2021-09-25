@@ -1,20 +1,11 @@
-import React from 'react'
+import Layout from '../../components/Layout'
 
 const Profile = (props) => {
   return (
-    <div className='tab-content'>
-      <div className=''>
-        <div className='card border-info mb-3'>
-          <div className='card-header'>Informations</div>
-          <div className='card-body'>
-            <h4 className='card-title'>
-              Hello <span>BenOpen</span>
-            </h4>
-            <p className='card-text'>date de création : ....</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Layout pageTitle='Inscription'>
+      <h4>Bonjour <span>...</span></h4>
+      <p>Date de création : ....</p>
+    </Layout>
   )
 }
 
