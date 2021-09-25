@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 
 const halloffameRoutes = require('./routes/halloffame')
+const flashcardRoutes = require('./routes/flashcard')
 const userRoutes = require('./routes/user')
 
 const app = express()
@@ -24,6 +25,7 @@ app.use((req, res, next) => {
 app.use(express.json())
 
 app.use('/api/halloffame', halloffameRoutes)
+app.use('/api/flashcard', flashcardRoutes)
 app.use('/api/user', userRoutes)
 
 module.exports = app
