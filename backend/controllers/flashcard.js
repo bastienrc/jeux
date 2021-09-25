@@ -1,38 +1,38 @@
-const Thing = require('../models/thing')
+const Card = require('../models/card')
 const fs = require('fs')
 
-exports.createThing = (req, res, next) => {
-  const thingObject = JSON.parse(req.body.thing)
-  delete thingObject._id
-  const thing = new Thing({
-    ...thingObject,
+exports.createCard = (req, res, next) => {
+  const cardObject = JSON.parse(req.body.card)
+  delete cardObject._id
+  const card = new Card({
+    ...cardObject,
     imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
   })
-  thing.save()
+  card.save()
     .then(() => res.status(201).json({ message: 'Objet enregistré !' }))
     .catch(error => res.status(400).json({ error }))
 }
 
-exports.updateThing = (req, res, next) => {
-  const thingObject = req.file
+exports.updateCard = (req, res, next) => {
+  const cardObject = req.file
     ? {
-        ...JSON.parse(req.body.thing),
+        ...JSON.parse(req.body.card),
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
       }
     : {
         ...req.body
       }
-  Thing.updateOne({ _id: req.params.id }, { ...thingObject, _id: req.params.id })
-    .then(thing => res.status(200).json({ message: 'Objet modifié !' }))
+  Card.updateOne({ _id: req.params.id }, { ...cardObject, _id: req.params.id })
+    .then(card => res.status(200).json({ message: 'Objet modifié !' }))
     .catch(error => res.status(404).json({ error }))
 }
 
-exports.deleteThing = (req, res, next) => {
-  Thing.findOne({ _id: req.params.id })
-    .then(thing => {
-      const filename = thing.imageUrl.split('/images/')[1]
+exports.deleteCard = (req, res, next) => {
+  Card.findOne({ _id: req.params.id })
+    .then(card => {
+      const filename = card.imageUrl.split('/images/')[1]
       fs.unlink(`images/${filename}`, () => {
-        Thing.deleteOne({ _id: req.params.id })
+        Card.deleteOne({ _id: req.params.id })
           .then(() => res.status(200).json({ message: 'Objet supprimé !' }))
           .catch(error => res.status(400).json({ error }))
       })
@@ -40,14 +40,14 @@ exports.deleteThing = (req, res, next) => {
     .catch(error => res.status(500).json({ error }))
 }
 
-exports.readOneThing = (req, res, next) => {
-  Thing.findOne({ _id: req.params.id })
-    .then(thing => res.status(200).json(thing))
+exports.readOneCard = (req, res, next) => {
+  Card.findOne({ _id: req.params.id })
+    .then(card => res.status(200).json(card))
     .catch(error => res.status(404).json({ error }))
 }
 
-exports.readAllThings = (req, res, next) => {
-  Thing.find()
-    .then(things => res.status(200).json(things))
+exports.readAllCards = (req, res, next) => {
+  Card.find()
+    .then(cards => res.status(200).json(cards))
     .catch(error => res.status(400).json({ error }))
 }
