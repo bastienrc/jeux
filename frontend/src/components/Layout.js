@@ -47,6 +47,7 @@ const Footer = styled.footer`
 `
 
 const Layout = ({ pageTitle, children }) => {
+  const year = new Date().getFullYear()
   return (
     <>
       <GlobalStyle />
@@ -57,7 +58,7 @@ const Layout = ({ pageTitle, children }) => {
           <h1>{pageTitle}</h1>
           {children}
         </Main>
-        <Footer>Mes Jeux ~ 2021 ~ Sebastien Colbert</Footer>
+        <Footer>Mes Jeux ~ {year} ~ Sebastien Colbert</Footer>
       </Container>
     </>
   )
