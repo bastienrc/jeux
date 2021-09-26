@@ -1,11 +1,9 @@
-import Layout from '../../components/Layout'
-
-const Profile = (props) => {
+function Profile () {
   return (
-    <Layout pageTitle='Inscription'>
+    <div>
       <h4>Bonjour <span>...</span></h4>
       <p>Date de création : ....</p>
-    </Layout>
+    </div>
   )
 }
 

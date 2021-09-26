@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import Auth from '../contexts/Auth'
 import { logout } from '../services/AuthApi'
+import { toast } from 'react-toastify'
 
 const Nav = styled.nav`
   display: flex;
@@ -52,6 +53,7 @@ const Navigation = ({ brand }) => {
   const handleLogout = () => {
     logout()
     setIsAuthenticated(false)
+    toast.info('Adieu, petit prince partit trop tot !!!')
   }
 
   return (
@@ -81,7 +83,7 @@ const Navigation = ({ brand }) => {
               </NavLinkText>
             </NavLinkItem>
             <NavLinkItem>
-              <NavLinkText to='/sign-up' activeClassName='navActive'>
+              <NavLinkText to='/register' activeClassName='navActive'>
                 S'enregistrer
               </NavLinkText>
             </NavLinkItem>

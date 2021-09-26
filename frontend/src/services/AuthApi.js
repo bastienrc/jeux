@@ -2,7 +2,7 @@ import axios from 'axios'
 import jwtDecode from 'jwt-decode'
 import { getItem, addItem, removeItem } from './LocaleStorage'
 
-const AUTH_API_BASE_URL = 'http://localhost:5000/api/user'
+const USER_API_BASE_URL = 'http://localhost:5000/api/user'
 
 export function hasAuthenticated () {
   const token = getItem('jeuxToken')
@@ -17,7 +17,7 @@ export function hasAuthenticated () {
 
 export function login (credentials) {
   return axios
-    .post(AUTH_API_BASE_URL + '/login', credentials)
+    .post(USER_API_BASE_URL + '/login', credentials)
     .then(response => response.data.token)
     .then(token => {
       addItem('jeuxToken', token)

@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { hasAuthenticated } from './services/AuthApi'
 import Auth from './contexts/Auth'
@@ -12,7 +14,6 @@ import Page404 from './pages/Page404'
 // User
 import Account from './pages/users/Account'
 import Login from './pages/users/Login'
-import Profile from './pages/users/Profile'
 import Register from './pages/users/Register'
 
 // HallOfFame
@@ -31,6 +32,7 @@ import Snake from './pages/snake/Snake'
 
 function App () {
   const [isAuthenticated, setIsAuthenticated] = useState(hasAuthenticated())
+
   return (
     <Auth.Provider value={{ isAuthenticated, setIsAuthenticated }}>
       <Router>
@@ -44,7 +46,6 @@ function App () {
           <Route path='/register' exact component={Register} />
 
           <AuthenticatedRoute path='/account' component={Account} />
-          <AuthenticatedRoute path='/profile' component={Profile} />
 
           <Route path='/halloffame' component={ListHallOfFame} />
           <Route path='/view-halloffame/:id' component={ViewHallOfFame} />
@@ -53,6 +54,7 @@ function App () {
           <Route component={Page404} />
         </Switch>
       </Router>
+      <ToastContainer />
     </Auth.Provider>
   )
 }

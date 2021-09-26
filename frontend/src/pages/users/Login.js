@@ -3,6 +3,7 @@ import Layout from '../../components/Layout'
 import { Form, FormGroup, FromInner, Label, Input, Submit } from './LoginStyled'
 import Auth from '../../contexts/Auth'
 import { login } from '../../services/AuthApi'
+import { toast } from 'react-toastify'
 
 function Login ({ history }) {
   const { isAuthenticated, setIsAuthenticated } = useContext(Auth)
@@ -24,9 +25,11 @@ function Login ({ history }) {
     try {
       const response = await login(user)
       setIsAuthenticated(response)
+      toast.success('Content de te rovoir')
       history.replace('/account')
     } catch ({ response }) {
-      console.log(response)
+      console.dir(response)
+      toast.error(response.data.error)
     }
   }
 

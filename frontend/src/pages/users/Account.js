@@ -1,19 +1,39 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Layout from '../../components/Layout'
-
+import styled from 'styled-components'
 import Profile from './Profile'
+import Score from './Score'
 
-const Account = (props) => {
+const Tabs = styled.div`
+  border-bottom: 1px solid #444;
+  ul {
+    text-decoration: none;
+    color: blue;
+  }
+  li {
+    background-color: aliceblue;
+    padding: 5px;
+    list-style: none;
+    width: 100px;
+  }
+`
+
+const TabsContents = styled.div`
+`
+
+function Account () {
   const [curentTab, setCurrentTab] = useState({ name: 'profile' })
   const [tabs] = useState([
-    { tabKey: 'profile', tabTitle: 'Mon profile' }
+    { tabKey: 'profile', tabTitle: 'Mon profile' },
+    { tabKey: 'score', tabTitle: 'Mes scores' }
   ])
+
   const handleTabs = (name) => {
     setCurrentTab({ name })
   }
   return (
-    <Layout pageTitle='Account'>
-      <div className='tabs'>
+    <Layout pageTitle='Mon Compte'>
+      <Tabs>
         <ul>
           {tabs.map((tab, index) => (
             <li
@@ -26,10 +46,11 @@ const Account = (props) => {
             </li>
           ))}
         </ul>
-      </div>
-      <div className='tabs-contents'>
+      </Tabs>
+      <TabsContents>
         {curentTab.name === 'profile' && <Profile />}
-      </div>
+        {curentTab.name === 'score' && <Score />}
+      </TabsContents>
     </Layout>
   )
 }
