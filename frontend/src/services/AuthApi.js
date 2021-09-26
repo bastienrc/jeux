@@ -2,7 +2,8 @@ import axios from 'axios'
 import jwtDecode from 'jwt-decode'
 import { getItem, addItem, removeItem } from './LocaleStorage'
 
-const USER_API_BASE_URL = 'http://localhost:5000/api/user'
+const BASE_URL = process.env.REACT_APP_BASE_URL
+const USER_API_BASE_URL = BASE_URL + '/user'
 
 export function hasAuthenticated () {
   const token = getItem('jeuxToken')

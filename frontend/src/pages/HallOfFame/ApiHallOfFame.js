@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const HALLOFFAME_API_BASE_URL = 'http://localhost:5000/api/halloffame'
+const BASE_URL = process.env.REACT_APP_BASE_URL
+const HALLOFFAME_API_BASE_URL = BASE_URL + '/halloffame'
 
 class HallOfFame {
   getHallOfFames () {
