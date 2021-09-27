@@ -30,6 +30,8 @@ const NavLinks = styled.ul`
 
 const NavLinkItem = styled.li`
   margin: 5px;
+  font-size: 0.92rem;
+  font-family: 'Courier New', Courier, monospace;
 `
 
 const NavLinkText = styled(Link)`
@@ -44,6 +46,20 @@ const NavLinkText = styled(Link)`
   }
   &.${props => props.activeClassName} {
     background-color: lightgreen;
+  }
+`
+
+const Logout = styled.button`
+  border: 0;
+  color: black;
+  font-size: 0.92rem;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: greenyellow;
+  padding: 5px 10px;
+  border-radius: 10px;
+  &&:hover {
+    color: white;
+    background-color: green;
   }
 `
 
@@ -96,7 +112,7 @@ const Navigation = ({ brand }) => {
               </NavLinkText>
             </NavLinkItem>
             <NavLinkItem>
-              <button onClick={handleLogout}>Déconnexion</button>
+              <Logout onClick={handleLogout}>Déconnexion</Logout>
             </NavLinkItem>
           </>
         )}
