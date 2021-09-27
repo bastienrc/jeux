@@ -25,7 +25,7 @@ export const Title = styled.div`
 `
 
 export const TitleName = styled.h2`
-  color: darkblue;
+  color: #DDD;
 `
 
 export const TitleAdd = styled.button`

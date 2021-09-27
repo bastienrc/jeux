@@ -8,16 +8,21 @@ import { toast } from 'react-toastify'
 const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
-  background-color: #000;
+  background-color: #222;
   color: white;
   width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 `
 
 const Brand = styled(Link)`
   font-size: 3rem;
-  margin: 10px;
+  margin: 10px 15px;
   color: white;
   text-decoration: none;
+  span {
+    font-size: 1.6rem;
+    font-style: italic
+  }
 `
 
 const NavLinks = styled.ul`
@@ -30,19 +35,22 @@ const NavLinks = styled.ul`
 
 const NavLinkItem = styled.li`
   margin: 5px;
-  font-size: 0.92rem;
-  font-family: 'Courier New', Courier, monospace;
 `
 
 const NavLinkText = styled(Link)`
-  color: black;
+  color: #333;
+  text-align: center;
   text-decoration: none;
-  background-color: greenyellow;
-  padding: 5px 10px;
-  border-radius: 10px;
+  background-color: #DDD;
+  border: none;
+  margin: 1rem auto;
+  padding: .5rem 1.8rem;
+  font-size: 0.92rem;
+  font-family: 'Courier New', Courier, monospace;
+  clip-path: polygon(0 20px, 20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
   &&:hover {
     color: white;
-    background-color: green;
+    background-color: #090;
   }
   &.${props => props.activeClassName} {
     background-color: lightgreen;
@@ -50,16 +58,18 @@ const NavLinkText = styled(Link)`
 `
 
 const Logout = styled.button`
-  border: 0;
-  color: black;
+  color: #333;
+  text-align: center;
+  background-color: #DDD;
+  border: none;
+  margin: 1rem auto;
+  padding: .5rem 1.8rem;
   font-size: 0.92rem;
   font-family: 'Courier New', Courier, monospace;
-  background-color: greenyellow;
-  padding: 5px 10px;
-  border-radius: 10px;
+  clip-path: polygon(0 20px, 20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
   &&:hover {
     color: white;
-    background-color: green;
+    background-color: #090;
   }
 `
 
@@ -69,12 +79,12 @@ const Navigation = ({ brand }) => {
   const handleLogout = () => {
     logout()
     setIsAuthenticated(false)
-    toast.info('Adieu, petit prince partit trop tot !!!')
+    toast.info('À Bientôt !!!')
   }
 
   return (
     <Nav>
-      <Brand to='/' exact>{brand}</Brand>
+      <Brand to='/' exact>Jeux <span>{brand}</span></Brand>
       <NavLinks>
         <NavLinkItem>
           <NavLinkText to='/' exact activeClassName='navActive'>

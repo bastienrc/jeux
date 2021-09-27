@@ -1,80 +1,68 @@
-import React, { Component } from 'react'
+import { useState, useContext, useEffect } from 'react'
+// import { useHistory } from 'react-router-dom'
+import Auth from '../../contexts/Auth'
 import Layout from '../../components/Layout'
-import { Table, Title, TitleName, TitleAdd } from '../../components/Table'
+import { Table, Title, TitleName } from '../../components/Table'
 import HallOfFame from './ApiHallOfFame'
 
-class ListHallOfFame extends Component {
-  constructor (props) {
-    super(props)
+function ListHallOfFame () {
+  const { isAuthenticated } = useContext(Auth)
+  const [hallOfFames, setHallOfFames] = useState([])
+  // const history = useHistory()
 
-    this.state = {
-      halloffames: []
-    }
-    this.handleAddHallOfFame = this.handleAddHallOfFame.bind(this)
-    this.editHallOfFame = this.editHallOfFame.bind(this)
-    this.deleteHallOfFame = this.deleteHallOfFame.bind(this)
-  }
+  useEffect(() => HallOfFame.getHallOfFames().then((res) => {
+    setHallOfFames(res.data)
+  }), [])
 
-  deleteHallOfFame (id) {
+  function deleteHallOfFame (id) {
     HallOfFame.deleteHallOfFame(id).then(res => {
-      this.setState({ halloffames: this.state.halloffames.filter(halloffame => halloffame._id !== id) })
+      setHallOfFames(hallOfFames.filter(halloffame => halloffame._id !== id))
     })
   }
 
-  viewHallOfFame (id) {
-    this.props.history.push(`/view-halloffame/${id}`)
-  }
+  // function editHallOfFame (id) {
+  //   history.push(`/add-halloffame/${id}`)
+  // }
 
-  editHallOfFame (id) {
-    this.props.history.push(`/add-halloffame/${id}`)
-  }
+  // function handleAddHallOfFame () {
+  //   history.push('/add-halloffame/_add')
+  // }
 
-  componentDidMount () {
-    HallOfFame.getHallOfFames().then((res) => {
-      this.setState({ halloffames: res.data })
-    })
-  }
+  return (
+    <Layout pageTitle='Hall Of Fame'>
+      <Title>
+        <TitleName>Meilleurs Scores</TitleName>
+      </Title>
 
-  handleAddHallOfFame () {
-    this.props.history.push('/add-halloffame/_add')
-  }
-
-  render () {
-    return (
-      <Layout pageTitle='Hall Of Fame'>
-        <Title>
-          <TitleName>Best Scores</TitleName>
-          <TitleAdd onClick={this.handleAddHallOfFame}>+</TitleAdd>
-        </Title>
-
-        <Table>
-          <thead>
-            <tr>
-              <th>Player</th>
-              <th>Score</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-            this.state.halloffames.sort((a, b) => b.scores - a.scores).map(
+      <Table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Joueur</th>
+            <th>Score</th>
+            {(isAuthenticated && (<th>...</th>))}
+          </tr>
+        </thead>
+        <tbody>
+          {
+            hallOfFames.sort((a, b) => b.scores - a.scores).map(
               halloffame =>
                 <tr key={halloffame._id}>
+                  <td>{halloffame._id}</td>
                   <td>{halloffame.player}</td>
                   <td>{halloffame.score}</td>
-                  <td>
-                    <button onClick={() => this.editHallOfFame(halloffame._id)} className='btn btn-info'>Update</button>
-                    <button style={{ marginLeft: '10px' }} onClick={() => this.deleteHallOfFame(halloffame._id)} className='btn btn-danger'>Delete</button>
-                    <button style={{ marginLeft: '10px' }} onClick={() => this.viewHallOfFame(halloffame._id)} className='btn btn-info'>View</button>
-                  </td>
+                  {(isAuthenticated && (
+                    <td>
+                      <button onClick={() => deleteHallOfFame(halloffame._id)} className='btn btn-danger'>Delete</button>
+                    </td>
+                  ))}
                 </tr>
             )
           }
-          </tbody>
-        </Table>
-      </Layout>
-    )
-  }
+        </tbody>
+      </Table>
+    </Layout>
+  )
 }
 
 export default ListHallOfFame

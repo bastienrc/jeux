@@ -19,7 +19,6 @@ import Register from './pages/users/Register'
 // HallOfFame
 import ListHallOfFame from './pages/HallOfFame/ListHallOfFame'
 import CreateHallOfFame from './pages/HallOfFame/CreateHallOfFame'
-import ViewHallOfFame from './pages/HallOfFame/ViewHallOfFame'
 
 // Pendu
 import Pendu from './pages/pendu/Pendu'
@@ -48,7 +47,6 @@ function App () {
           <AuthenticatedRoute path='/account' component={Account} />
 
           <Route path='/halloffame' component={ListHallOfFame} />
-          <Route path='/view-halloffame/:id' component={ViewHallOfFame} />
           <AuthenticatedRoute path='/add-halloffame/:id' component={CreateHallOfFame} />
 
           <Route component={Page404} />

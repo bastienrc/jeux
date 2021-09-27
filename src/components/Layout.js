@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components'
 import Navigation from './Navigation'
+import bgImg from '../images/shattered-island.gif'
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -12,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-    background-color: #BADA55;
+    background-image: url(${bgImg});
   }
 
   code {
@@ -27,38 +28,32 @@ const Container = styled.div`
 `
 
 const Main = styled.main`
-  margin: auto;
+  margin: 1.5rem auto;
   width: 80%;
   height: 100%;
-  h1 {
-    color: green;
-    text-align: center;
-    margin: 1.5rem 0 2rem 0;
-  }
 `
 
 const Footer = styled.footer`
-  background-color: #111;
+  background-color: #222;
   width: 100%;
   color: white;
   text-align: center;
-  font-size: 1em;
-  padding: 1em 0;
+  font-size: 0.9em;
+  padding: 0.8em 0;
 `
 
-const Layout = ({ pageTitle, children }) => {
+function Layout ({ pageTitle, children }) {
   const year = new Date().getFullYear()
   return (
     <>
       <GlobalStyle />
       <Container>
-        <title>Mes Jeux</title>
-        <Navigation brand='Mes Jeux' />
+        <title>Jeux</title>
+        <Navigation brand={pageTitle} />
         <Main>
-          <h1>{pageTitle}</h1>
           {children}
         </Main>
-        <Footer>Mes Jeux ~ {year} ~ Sebastien Colbert</Footer>
+        <Footer>Jeux ~ {year} ~ Sebastien Colbert</Footer>
       </Container>
     </>
   )

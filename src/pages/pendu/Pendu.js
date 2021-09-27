@@ -7,7 +7,7 @@ const Container = styled.div`
   margin: 0 auto;
   padding: 0 3rem 3rem;
   border-radius: 3px;
-  background-color: #208075;
+  background-color: #333;
 `
 
 const WordSearch = styled.p`
@@ -23,7 +23,6 @@ const Keyboard = styled.div`
   grid-template-columns: repeat(13, 1fr);
   margin: 0.5rem;
   padding: 0.3rem;
-  background-color: #17db4b;
   border-radius: 3px;
 `
 
@@ -33,7 +32,7 @@ const Key = styled.span`
   border-radius: 3px;
   background-color: white;
   &&:hover {
-    background-color: #DEDEDE;
+    background-color: #999;
   }
   &.${props => props.isActive} {
     background-color: grey;
@@ -43,7 +42,6 @@ const Key = styled.span`
 
 const Animation = styled.div`
   position: relative;
-  background-color: greenyellow;
   color: orange;
   font-size: 3rem;
   width: 100%;
@@ -59,7 +57,7 @@ const Score = styled.div`
   height: 70px;
   font-size: 1.5rem;
   color: white;
-  background-color: cyan;
+  background-color: #090;
   padding-top: 15px;
   border-radius: 0% 0% 0% 100%;
 `

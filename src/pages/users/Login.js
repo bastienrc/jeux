@@ -9,7 +9,7 @@ function Login ({ history }) {
   const { isAuthenticated, setIsAuthenticated } = useContext(Auth)
 
   const [user, setUser] = useState({
-    username: '',
+    email: '',
     password: ''
   })
 
@@ -25,10 +25,9 @@ function Login ({ history }) {
     try {
       const response = await login(user)
       setIsAuthenticated(response)
-      toast.success('Content de te rovoir')
+      toast.success('Content de vous revoir !!!')
       history.replace('/account')
     } catch ({ response }) {
-      console.dir(response)
       toast.error(response.data.error)
     }
   }

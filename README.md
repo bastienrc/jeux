@@ -1,12 +1,14 @@
 # Mes Jeux
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8e51bdd9-fe27-456d-b66a-26850c7f332c/deploy-status)](https://app.netlify.com/sites/jeux-sebastiencolbert/deploys)
+
 Demo sur : [jeux.sebastiencolbert.fr](https://jeux.sebastiencolbert.fr)
 
 Run : ```yarn start```
 
 ## TODO
 
-- Refaire le design
+- Refaire le design du Login, Account, About
 - Hall Of Fame:
   - Montrer les 3 meilleurs **Or**, **Argent**, **Bronze** pour tous les jeux et pour chaque jeux
 - Mon Compte:
