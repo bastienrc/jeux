@@ -8,18 +8,23 @@ const Cards = styled.div`
   justify-content: flex-start;
 `
 
+const Card = styled.div`
+  filter: drop-shadow(-1px 6px 3px rgba(0, 0, 0, 1));
+`
+
 const CardLink = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 100px;
   color: #111;
   text-decoration: none;
   background-color: #DDD;
   margin: 10px;
-  border-radius: 50% 0 50% 0;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+  transition: color 2s, background-color 2s;
+  font-family: 'Courier New', Courier, monospace;
+  clip-path: polygon(0 20px, 20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
   &&:hover {
     color: white;
     background-color: #090;
@@ -30,9 +35,9 @@ const Home = () => {
   return (
     <Layout>
       <Cards>
-        <CardLink to='/pendu'>Pendu</CardLink>
-        <CardLink to='/flashcard'>Flashcard</CardLink>
-        <CardLink to='/snake'>Snake</CardLink>
+        <Card><CardLink to='/pendu'>Pendu</CardLink></Card>
+        <Card><CardLink to='/flashcard'>Flashcard</CardLink></Card>
+        <Card><CardLink to='/snake'>Snake</CardLink></Card>
       </Cards>
     </Layout>
   )
